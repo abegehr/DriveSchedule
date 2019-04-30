@@ -7,15 +7,76 @@
 //
 
 import UIKit
+import AutoAPI
+import HMKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // HM: initialise SDK
+        do {
+            try HMLocalDevice.shared.initialise(
+                deviceCertificate: "dGVzdIqd2u1msODVCoJbt/BLBqG4DB1L5eJZA+fNJ/zI1l9GW1hOtSsEygFLy5mEbnMiFOCgAbhRYQ6tmWZpG5OTnR6CVeWgO/LzX5g3f8r1Pay0ZgyBQCyS0FmcJDT+zTY1dQlhIL5fvelX2Dfby6u1ZqzVfNv3qRoZ19svuhKLE4j347h2gfZIx4nLbSDScBNs9CLyS6z3",
+                devicePrivateKey: "n0rSwwnIh/xEL1g+/vzRrC8ppeFNNFmub89ZwoKXcMw=",
+                issuerPublicKey: "0jlGCM5MByg3xQOgmHXD51W2srXTNAccZz1lwSLOXtBqW9aOXUOCJjgCfL6m4ktMie4NX6dBr/Ehc1ogH0b9gw=="
+            )
+        }
+        catch {
+            // Handle the error
+            print("Invalid initialisation parameters, please double-check the snippet: \(error)")
+        }
+        
+        // HM: connect to vehicle
+        do {
+            try HMTelematics.downloadAccessCertificate(accessToken: "96c54e9b-48d2-437e-b658-630f3ea7d424") {
+                switch $0 {
+                case .failure(let failureReasonString):
+                    // Handle the failure
+                    print("HM ERROR – could  not connect to vehicle: ", failureReasonString)
+                    
+                case .success(let vehicleSerialData):
+                    // Handle the success
+                    print("success: ", vehicleSerialData)
+                    
+                    
+                    do {
+                        try HMTelematics.sendCommand(AAVehicleLocation.getLocation.bytes , serial: vehicleSerialData) { response in
+                            if case HMTelematicsRequestResult.success(let data) = response {
+                                guard let data = data else {
+                                    return print("Missing response data")
+                                }
+                                
+                                guard let location = AutoAPI.parseBinary(data) as? AAVehicleLocation else {
+                                    return print("Failed to parse Auto API")
+                                }
+                                
+                                print("Got vehiclee location \(location).")
+                                let  locationCoord = location.coordinates?.value
+                                print("Vehicle coordinates: \(locationCoord?.latitude), \(locationCoord?.longitude).")
+                            }
+                            else {
+                                print("Failed to get vehicle location: \(response).")
+                            }
+                        }
+                    }
+                    catch {
+                        print("Failed to send command:", error)
+                    }
+                    
+                    
+                }
+            }
+        }
+        catch {
+            // Handle the error
+            print("Invalid Access Token, please double-check the string: \(error)")
+        }
+        
         return true
     }
 
@@ -40,7 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 
