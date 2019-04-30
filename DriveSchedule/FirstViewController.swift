@@ -9,31 +9,109 @@
 import UIKit
 import MapKit
 import CoreLocation
+import HMKit
+import AutoAPI
 
 
 class FirstViewController: UIViewController {
 
     @IBOutlet weak var Map: MKMapView!
+    var vehicleSerialData: [UInt8] = []
+    var vehicleAnnotation = MKPointAnnotation()
+    var vehilceLocationTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // location of Berlin
-        let location = CLLocationCoordinate2DMake(52.523430, 13.411440)
+        // HM: check vehicle certificate is registered
+        if (HMKit.shared.registeredCertificates.count >= 0) {
+            vehicleSerialData = HMKit.shared.registeredCertificates[0].gainingSerial
+        }
         
-        // center map on Berlin
-        let span = MKCoordinateSpan.init(latitudeDelta: 0.06, longitudeDelta: 0.06)
-        let region = MKCoordinateRegion(center: location, span: span)
-        Map.setRegion(region, animated: true)
+        // add vehicle location to map
+        do {
+            try HMTelematics.sendCommand(AAVehicleLocation.getLocation.bytes , serial: vehicleSerialData) { response in
+                if case HMTelematicsRequestResult.success(let data) = response {
+                    guard let data = data else {
+                        return print("Missing response data")
+                    }
+                    
+                    // parse
+                    guard let vehicleLocation = AutoAPI.parseBinary(data) as? AAVehicleLocation else {
+                        return print("Failed to parse Auto API")
+                    }
+                    
+                    // get coordinates
+                    guard let vehicleLocationCoord = vehicleLocation.coordinates?.value else {
+                        return print("Failed to get vehicle location coordinates.")
+                    }
+                    
+                    // successfully got vehicle location
+                    let location = CLLocationCoordinate2DMake(vehicleLocationCoord.latitude, vehicleLocationCoord.longitude)
+                    
+                    // center map on vehicle
+                    let span = MKCoordinateSpan.init(latitudeDelta: 0.06, longitudeDelta: 0.06)
+                    let region = MKCoordinateRegion(center: location, span: span)
+                    self.Map.setRegion(region, animated: true)
+                    
+                    // add point annotation
+                    self.vehicleAnnotation = MKPointAnnotation()
+                    self.vehicleAnnotation.coordinate = location
+                    self.vehicleAnnotation.title = "Vehicle"
+                    self.vehicleAnnotation.subtitle = "This is where your vehicle is currently!"
+                    self.Map.addAnnotation(self.vehicleAnnotation)
+                }
+                else {
+                    print("Failed to get vehicle location: \(response).")
+                }
+            }
+        }
+        catch {
+            print("Failed to send command:", error)
+        }
         
-        // add point annotation
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = "Annotation"
-        annotation.subtitle = "This is the place!"
         
-        Map.addAnnotation(annotation)
+        // check for the current vehicle location once a second
+        scheduleVehicleLocationUpdates()
+        
+    }
+    
+    func scheduleVehicleLocationUpdates() {
+        vehilceLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
+            // get current vehicle location
+            do {
+                try HMTelematics.sendCommand(AAVehicleLocation.getLocation.bytes , serial: self.vehicleSerialData) { response in
+                    if case HMTelematicsRequestResult.success(let data) = response {
+                        guard let data = data else {
+                            return print("Missing response data")
+                        }
+                        
+                        // parse
+                        guard let vehicleLocation = AutoAPI.parseBinary(data) as? AAVehicleLocation else {
+                            return print("Failed to parse Auto API")
+                        }
+                        
+                        // get coordinates
+                        guard let vehicleLocationCoord = vehicleLocation.coordinates?.value else {
+                            return print("Failed to get vehicle location coordinates.")
+                        }
+                        
+                        // successfully got vehicle location
+                        let location = CLLocationCoordinate2DMake(vehicleLocationCoord.latitude, vehicleLocationCoord.longitude)
+                        
+                        // update vehicle location on map
+                        self.vehicleAnnotation.coordinate = location
+                    }
+                    else {
+                        print("Failed to get vehicle location: \(response).")
+                    }
+                }
+            }
+            catch {
+                print("Failed to send command:", error)
+            }
+        })
     }
 
 

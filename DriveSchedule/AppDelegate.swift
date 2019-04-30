@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AutoAPI
 import HMKit
 
 @UIApplicationMain
@@ -39,36 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // Handle the failure
                     print("HM ERROR – could  not connect to vehicle: ", failureReasonString)
                     
-                case .success(let vehicleSerialData):
+                case .success(_ /*let vehicleSerialData*/):
                     // Handle the success
-                    print("success: ", vehicleSerialData)
-                    
-                    
-                    do {
-                        try HMTelematics.sendCommand(AAVehicleLocation.getLocation.bytes , serial: vehicleSerialData) { response in
-                            if case HMTelematicsRequestResult.success(let data) = response {
-                                guard let data = data else {
-                                    return print("Missing response data")
-                                }
-                                
-                                guard let location = AutoAPI.parseBinary(data) as? AAVehicleLocation else {
-                                    return print("Failed to parse Auto API")
-                                }
-                                
-                                print("Got vehiclee location \(location).")
-                                let  locationCoord = location.coordinates?.value
-                                print("Vehicle coordinates: \(locationCoord?.latitude), \(locationCoord?.longitude).")
-                            }
-                            else {
-                                print("Failed to get vehicle location: \(response).")
-                            }
-                        }
-                    }
-                    catch {
-                        print("Failed to send command:", error)
-                    }
-                    
-                    
+                    print("HM – successfully connected to vehicle")
                 }
             }
         }
