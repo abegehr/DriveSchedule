@@ -66,6 +66,7 @@
 		3AC16AE122789B330047658B /* HMUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMUtilities.framework; sourceTree = "<group>"; };
 		3AC16AEB2278E4640047658B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3AC16AEC2278E4640047658B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3AC16AEF2278EE190047658B /* DriveSchedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriveSchedule.entitlements; sourceTree = "<group>"; };
 		3AD50C332259E86D0048547E /* DriveSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD50C362259E86D0048547E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AD50C3D2259E86D0048547E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		3AD50C352259E86D0048547E /* DriveSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				3AC16AEF2278EE190047658B /* DriveSchedule.entitlements */,
 				3AC16AEB2278E4640047658B /* MapViewController.swift */,
 				3AC16AEC2278E4640047658B /* SettingsViewController.swift */,
 				3AD50C362259E86D0048547E /* AppDelegate.swift */,
@@ -234,6 +236,11 @@
 				TargetAttributes = {
 					3AD50C322259E86D0048547E = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					3AD50C482259E8700048547E = {
 						CreatedOnToolsVersion = 10.2;
@@ -474,6 +481,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DriveSchedule/DriveSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EW3E677XMJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -497,6 +505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DriveSchedule/DriveSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EW3E677XMJ;
 				FRAMEWORK_SEARCH_PATHS = (
