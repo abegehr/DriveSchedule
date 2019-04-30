@@ -12,6 +12,7 @@ import CoreLocation
 import HMKit
 import AutoAPI
 import EventKit
+import UserNotifications
 
 
 class MapViewController: UIViewController {
@@ -156,6 +157,12 @@ class MapViewController: UIViewController {
                 for event in events {
                     self.showEventOnMap(event: event)
                 }
+                
+                // add callback to turn on AC before events
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                for event in events {
+                    self.activateACBeforeEvent(event: event)
+                }
             } else {
                 print("ERROR No access to user's calendar.")
             }
@@ -179,6 +186,39 @@ class MapViewController: UIViewController {
                 mark.title = event.title
                 mark.subtitle = event.location
                 self.Map.addAnnotation(mark)
+            }
+        }
+    }
+    
+    func activateACBeforeEvent(event: EKEvent) {
+        let cal = Calendar.current
+        // travelTime in seconds
+        guard let travelTime = event.value(forKey: "travelTime") as? Int else {
+            return print("ERROR Event travelTime is not an Int.")
+        }
+        // datetime to start traveling to event
+        guard let travelDate = cal.date(byAdding: DateComponents(second: -1*(travelTime + 15*60)), to: event.startDate) else {
+            return print("ERROR Could not get travelDate from event.startDate and travelTime.")
+        }
+        
+        // create content
+        let content = UNMutableNotificationContent()
+        content.title = "Turing on AC"
+        content.body = "Leave for your next meeting in 15 Minutes."
+        
+        // create trigger
+        let dateComp = cal.dateComponents(in: cal.timeZone, from: travelDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: false)
+        
+        // create the request
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        
+        // schedule the request with the system.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { (error) in
+            if error != nil {
+                return print("ERROR adding notification request for turniing on AC before event: ", error as Any)
             }
         }
     }
