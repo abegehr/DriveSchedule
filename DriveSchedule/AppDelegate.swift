@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // HM: initialise SDK
         do {
-            try HMLocalDevice.shared.initialise(
+            try HMKit.shared.initialise(
                 deviceCertificate: "dGVzdIqd2u1msODVCoJbt/BLBqG4DB1L5eJZA+fNJ/zI1l9GW1hOtSsEygFLy5mEbnMiFOCgAbhRYQ6tmWZpG5OTnR6CVeWgO/LzX5g3f8r1Pay0ZgyBQCyS0FmcJDT+zTY1dQlhIL5fvelX2Dfby6u1ZqzVfNv3qRoZ19svuhKLE4j347h2gfZIx4nLbSDScBNs9CLyS6z3",
                 devicePrivateKey: "n0rSwwnIh/xEL1g+/vzRrC8ppeFNNFmub89ZwoKXcMw=",
                 issuerPublicKey: "0jlGCM5MByg3xQOgmHXD51W2srXTNAccZz1lwSLOXtBqW9aOXUOCJjgCfL6m4ktMie4NX6dBr/Ehc1ogH0b9gw=="
