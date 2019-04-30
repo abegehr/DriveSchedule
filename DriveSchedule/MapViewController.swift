@@ -14,7 +14,7 @@ import AutoAPI
 import EventKit
 
 
-class FirstViewController: UIViewController {
+class MapViewController: UIViewController {
 
     @IBOutlet weak var Map: MKMapView!
     // HM
