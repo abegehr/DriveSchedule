@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AC16AE222789B330047658B /* AutoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC16ADE22789B320047658B /* AutoAPI.framework */; };
+		3AC16AE322789B330047658B /* AutoAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC16ADE22789B320047658B /* AutoAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3AC16AE422789B330047658B /* HMCryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC16ADF22789B330047658B /* HMCryptoKit.framework */; };
+		3AC16AE522789B330047658B /* HMCryptoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC16ADF22789B330047658B /* HMCryptoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3AC16AE622789B330047658B /* HMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC16AE022789B330047658B /* HMKit.framework */; };
+		3AC16AE722789B330047658B /* HMKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC16AE022789B330047658B /* HMKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3AC16AE822789B330047658B /* HMUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC16AE122789B330047658B /* HMUtilities.framework */; };
+		3AC16AE922789B330047658B /* HMUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC16AE122789B330047658B /* HMUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3AD50C372259E86D0048547E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD50C362259E86D0048547E /* AppDelegate.swift */; };
 		3AD50C392259E86D0048547E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD50C382259E86D0048547E /* FirstViewController.swift */; };
 		3AD50C3B2259E86D0048547E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD50C3A2259E86D0048547E /* SecondViewController.swift */; };
@@ -34,7 +42,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3AC16AEA22789B330047658B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3AC16AE322789B330047658B /* AutoAPI.framework in Embed Frameworks */,
+				3AC16AE722789B330047658B /* HMKit.framework in Embed Frameworks */,
+				3AC16AE922789B330047658B /* HMUtilities.framework in Embed Frameworks */,
+				3AC16AE522789B330047658B /* HMCryptoKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3AC16ADE22789B320047658B /* AutoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AutoAPI.framework; sourceTree = "<group>"; };
+		3AC16ADF22789B330047658B /* HMCryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMCryptoKit.framework; sourceTree = "<group>"; };
+		3AC16AE022789B330047658B /* HMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMKit.framework; sourceTree = "<group>"; };
+		3AC16AE122789B330047658B /* HMUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMUtilities.framework; sourceTree = "<group>"; };
 		3AD50C332259E86D0048547E /* DriveSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD50C362259E86D0048547E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AD50C382259E86D0048547E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +85,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AC16AE222789B330047658B /* AutoAPI.framework in Frameworks */,
+				3AC16AE622789B330047658B /* HMKit.framework in Frameworks */,
+				3AC16AE822789B330047658B /* HMUtilities.framework in Frameworks */,
+				3AC16AE422789B330047658B /* HMCryptoKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +112,10 @@
 		3AD50C2A2259E86D0048547E = {
 			isa = PBXGroup;
 			children = (
+				3AC16ADE22789B320047658B /* AutoAPI.framework */,
+				3AC16ADF22789B330047658B /* HMCryptoKit.framework */,
+				3AC16AE022789B330047658B /* HMKit.framework */,
+				3AC16AE122789B330047658B /* HMUtilities.framework */,
 				3AD50C352259E86D0048547E /* DriveSchedule */,
 				3AD50C4C2259E8700048547E /* DriveScheduleTests */,
 				3AD50C572259E8700048547E /* DriveScheduleUITests */,
@@ -138,6 +175,7 @@
 				3AD50C2F2259E86D0048547E /* Sources */,
 				3AD50C302259E86D0048547E /* Frameworks */,
 				3AD50C312259E86D0048547E /* Resources */,
+				3AC16AEA22789B330047658B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -438,6 +476,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EW3E677XMJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DriveSchedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -457,6 +499,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EW3E677XMJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DriveSchedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
