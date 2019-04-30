@@ -29,7 +29,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // HM: check vehicle certificate is registered
+        // HM: check if vehicle certificate is registered
         if (HMKit.shared.registeredCertificates.count >= 0) {
             vehicleSerialData = HMKit.shared.registeredCertificates[0].gainingSerial
         }
@@ -141,7 +141,7 @@ class MapViewController: UIViewController {
                 let cal = Calendar.current
                 let date = Date()
                 let date0 = cal.startOfDay(for: date)
-                let date24 = cal.date(byAdding: DateComponents(day: 1, second: -1), to: date0)!
+                let date24 = cal.date(byAdding: DateComponents(day: 1, hour: 1), to: date0)!
                 // get normal calendars
                 var calendars = self.eventStore.calendars(for: EKEntityType.event)
                 calendars = calendars.filter { $0.type == EKCalendarType.calDAV || $0.type == EKCalendarType.local || $0.type == EKCalendarType.subscription || $0.type == EKCalendarType.exchange }
@@ -207,18 +207,20 @@ class MapViewController: UIViewController {
         content.body = "Leave for your next meeting in 15 Minutes."
         
         // create trigger
-        let dateComp = cal.dateComponents(in: cal.timeZone, from: travelDate)
+        let dateComp = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: travelDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: false)
         
         // create the request
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
         
+        print("notif request: ", request)
+        
         // schedule the request with the system.
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error) in
             if error != nil {
-                return print("ERROR adding notification request for turniing on AC before event: ", error as Any)
+                return print("ERROR adding notification request for turning on AC before event: ", error as Any)
             }
         }
     }

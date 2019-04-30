@@ -8,14 +8,25 @@
 
 import UIKit
 import HMKit
+import AutoAPI
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // request notifications permissions
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound])
+        { (granted, error) in
+            if error != nil {
+                print("ERROR requesting notification persmissions: ", error as Any)
+            }
+        }
         
         // HM: initialise SDK
         do {
@@ -72,6 +83,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        print("received notification response")
+        // todo: check the notification type before starting AC
+        
+        // set AC to 21°C
+        
+        // HM: check if vehicle certificate is registered
+        if (HMKit.shared.registeredCertificates.count >= 0) {
+            let vehicleSerialData = HMKit.shared.registeredCertificates[0].gainingSerial
+            
+            do {
+                try HMTelematics.sendCommand(AAClimate.startStopHVAC(.active).bytes , serial: vehicleSerialData) { response in
+                    if case HMTelematicsRequestResult.success(let data) = response {
+                        guard let data = data else {
+                            return print("ERROR Missing response data")
+                        }
+                        
+                        // parse
+                        guard let response = AutoAPI.parseBinary(data) as? AAVehicleLocation else {
+                            return print("ERROR Failed to parse Auto API")
+                        }
+                        
+                        print("Successfully activated HVAC: \(response)")
+                    }
+                    else {
+                        print("ERROR Failed to activate HVAC: \(response).")
+                    }
+                }
+            }
+            catch {
+                print("ERROR Failed to send command:", error)
+            }
+        }
     }
 
 }
