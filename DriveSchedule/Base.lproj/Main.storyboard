@@ -43,50 +43,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" text="DriveSchedule" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="93.809523809523853" y="81" width="226.00000000000006" height="43"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DriveSchedule displays the live position of your car as well as today's events on a map." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
+                                <rect key="frame" x="80" y="167" width="252" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="226" id="Gg3-xg-dY3"/>
+                                    <constraint firstAttribute="height" constant="51" id="WW4-Z2-UMj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Settings:" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWo-aV-Id7">
-                                <rect key="frame" x="64.85714285714289" y="280" width="282.00000000000006" height="25.5"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings:" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWo-aV-Id7">
+                                <rect key="frame" x="68" y="281" width="276" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="282" id="dM6-iW-nCO"/>
+                                    <constraint firstAttribute="height" constant="26" id="gqN-KW-MPp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="- start AC 15 Minutes before travel time" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRP-5Z-XHV">
-                                <rect key="frame" x="67.904761904761926" y="330" width="276" height="17"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- start AC 15 Minutes before travel time" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRP-5Z-XHV">
+                                <rect key="frame" x="68" y="330" width="276" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="276" id="z7C-6F-mPM"/>
+                                    <constraint firstAttribute="width" constant="276" id="bcP-ry-ZIb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="DriveSchedule displays the live position of your car as well as today's events on a map." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="80.095238095238074" y="167" width="252" height="50.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="252" id="d0A-HM-QcO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="DriveSchedule" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
+                                <rect key="frame" x="75" y="84" width="264" height="43"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="VRP-5Z-XHV" firstAttribute="top" secondItem="BWo-aV-Id7" secondAttribute="bottom" constant="24.5" id="Xw5-wG-41d"/>
-                            <constraint firstItem="zEq-FU-wV5" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="37" id="fCY-OI-yC6"/>
-                            <constraint firstItem="BWo-aV-Id7" firstAttribute="top" secondItem="NDk-cv-Gan" secondAttribute="bottom" constant="62.5" id="lfd-uQ-Tt7"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="43" id="u8d-gn-MMf"/>
+                            <constraint firstItem="zEq-FU-wV5" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="75" id="0mf-lP-XI3"/>
+                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="40" id="2TG-RH-vQx"/>
+                            <constraint firstItem="zEq-FU-wV5" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="40" id="Dcj-uj-tQs"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="NDk-cv-Gan" secondAttribute="trailing" constant="82" id="E48-JV-vhk"/>
+                            <constraint firstItem="BWo-aV-Id7" firstAttribute="top" secondItem="NDk-cv-Gan" secondAttribute="bottom" constant="63" id="JT0-v9-0zh"/>
+                            <constraint firstItem="BWo-aV-Id7" firstAttribute="leading" secondItem="VRP-5Z-XHV" secondAttribute="leading" id="MjL-aP-oXH"/>
+                            <constraint firstItem="BWo-aV-Id7" firstAttribute="trailing" secondItem="VRP-5Z-XHV" secondAttribute="trailing" id="VYZ-7n-QnO"/>
+                            <constraint firstItem="zEq-FU-wV5" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="aso-JS-iOQ"/>
+                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="VRP-5Z-XHV" secondAttribute="centerX" id="gRa-QX-Zdu"/>
+                            <constraint firstItem="VRP-5Z-XHV" firstAttribute="top" secondItem="BWo-aV-Id7" secondAttribute="bottom" constant="23" id="isk-cw-vWs"/>
+                            <constraint firstItem="NDk-cv-Gan" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="80" id="vj5-Hv-8sx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
