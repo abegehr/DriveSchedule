@@ -150,7 +150,7 @@ class MapViewController: UIViewController {
                 // remove all-day events
                 events = events.filter { $0.isAllDay == false }
                 
-                print("Loaded events: ", events)
+                //print("Loaded events: ", events)
                 
                 // show events on map
                 for event in events {
